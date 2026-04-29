@@ -10,7 +10,7 @@ Post-quantum cryptography toolkit with a safer, modular architecture.
 
 ## Quick benchmark
 ```bash
-python benchmarks/timeit_suite.py
+PYTHONPATH=. python benchmarks/timeit_suite.py
 ```
 
 ## Direct timeit commands
@@ -37,59 +37,4 @@ python examples/high_level_seal_open.py
 ## Test
 ```bash
 PYTHONPATH=. pytest -q
-```
-
-
-## Running tests locally (Windows/Linux/macOS)
-Use one of these:
-```bash
-python -m pytest -q
-```
-or install editable first:
-```bash
-pip install -e .
-pytest -q
-```
-
-
-## Windows compatibility
-- Base install works on Windows with Python 3.11+ using:
-```bash
-pip install .
-```
-- Post-quantum KEM/signature features depend on `oqs` and native `liboqs`, which may require extra setup on Windows. Install optional PQC deps with:
-```bash
-pip install .[pqc]
-```
-- AEAD-only helpers (`derive_aead_key`, `encrypt_with_shared_secret`, `decrypt_with_shared_secret`) work without `oqs`.
-
-
-## Benchmark data sizes
-The benchmark suite now includes randomized payload sizes for:
-- 256KB
-- 1MB
-- 16MB
-- 1GB (small amount, disabled by default)
-
-Run:
-```bash
-python benchmarks/timeit_suite.py
-```
-Enable 1GB case:
-```bash
-QRPT_RUN_1GB=1 python benchmarks/timeit_suite.py
-```
-
-
-## Sample benchmark results
-Example output from `python benchmarks/timeit_suite.py`:
-
-```text
-HKDF derive_aead_key                   best=0.0348s (0.007 ms/op, n=5000, r=5)
-encrypt 256KB                          best=0.0068s (0.068 ms/op, n=100, r=3)
-decrypt 256KB                          best=0.0068s (0.068 ms/op, n=100, r=3)
-encrypt 1MB                            best=0.0124s (0.412 ms/op, n=30, r=3)
-decrypt 1MB                            best=0.0124s (0.413 ms/op, n=30, r=3)
-encrypt 16MB                           best=0.0175s (5.826 ms/op, n=3, r=2)
-decrypt 16MB                           best=0.0183s (6.102 ms/op, n=3, r=2)
 ```
