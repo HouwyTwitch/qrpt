@@ -10,7 +10,7 @@ Post-quantum cryptography toolkit with a safer, modular architecture.
 
 ## Quick benchmark
 ```bash
-PYTHONPATH=. python benchmarks/timeit_suite.py
+python benchmarks/timeit_suite.py
 ```
 
 ## Direct timeit commands
@@ -37,4 +37,45 @@ python examples/high_level_seal_open.py
 ## Test
 ```bash
 PYTHONPATH=. pytest -q
+```
+
+
+## Running tests locally (Windows/Linux/macOS)
+Use one of these:
+```bash
+python -m pytest -q
+```
+or install editable first:
+```bash
+pip install -e .
+pytest -q
+```
+
+
+## Windows compatibility
+- Base install works on Windows with Python 3.11+ using:
+```bash
+pip install .
+```
+- Post-quantum KEM/signature features depend on `oqs` and native `liboqs`, which may require extra setup on Windows. Install optional PQC deps with:
+```bash
+pip install .[pqc]
+```
+- AEAD-only helpers (`derive_aead_key`, `encrypt_with_shared_secret`, `decrypt_with_shared_secret`) work without `oqs`.
+
+
+## Benchmark data sizes
+The benchmark suite now includes randomized payload sizes for:
+- 256KB
+- 1MB
+- 16MB
+- 1GB (small amount, disabled by default)
+
+Run:
+```bash
+python benchmarks/timeit_suite.py
+```
+Enable 1GB case:
+```bash
+QRPT_RUN_1GB=1 python benchmarks/timeit_suite.py
 ```
