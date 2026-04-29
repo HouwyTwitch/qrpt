@@ -50,3 +50,15 @@ or install editable first:
 pip install -e .
 pytest -q
 ```
+
+
+## Windows compatibility
+- Base install works on Windows with Python 3.11+ using:
+```bash
+pip install .
+```
+- Post-quantum KEM/signature features depend on `oqs` and native `liboqs`, which may require extra setup on Windows. Install optional PQC deps with:
+```bash
+pip install .[pqc]
+```
+- AEAD-only helpers (`derive_aead_key`, `encrypt_with_shared_secret`, `decrypt_with_shared_secret`) work without `oqs`.
