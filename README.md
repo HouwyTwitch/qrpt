@@ -62,3 +62,20 @@ pip install .
 pip install .[pqc]
 ```
 - AEAD-only helpers (`derive_aead_key`, `encrypt_with_shared_secret`, `decrypt_with_shared_secret`) work without `oqs`.
+
+
+## Benchmark data sizes
+The benchmark suite now includes randomized payload sizes for:
+- 256KB
+- 1MB
+- 16MB
+- 1GB (small amount, disabled by default)
+
+Run:
+```bash
+python benchmarks/timeit_suite.py
+```
+Enable 1GB case:
+```bash
+QRPT_RUN_1GB=1 python benchmarks/timeit_suite.py
+```
