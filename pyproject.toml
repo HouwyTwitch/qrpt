@@ -12,12 +12,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-pqc = [
-  "oqs>=0.10.0",
-]
-dev = [
-  "pytest>=8.0.0",
-]
+pqc = ["oqs>=0.10.0"]
+dev = ["pytest>=8.0.0"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["qrpt*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

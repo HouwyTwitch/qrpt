@@ -79,3 +79,29 @@ Enable 1GB case:
 ```bash
 QRPT_RUN_1GB=1 python benchmarks/timeit_suite.py
 ```
+
+
+## Sample benchmark results
+Example output from `python benchmarks/timeit_suite.py`:
+
+```text
+HKDF derive_aead_key                   best=0.0348s (0.007 ms/op, n=5000, r=5)
+encrypt 256KB                          best=0.0068s (0.068 ms/op, n=100, r=3)
+decrypt 256KB                          best=0.0068s (0.068 ms/op, n=100, r=3)
+encrypt 1MB                            best=0.0124s (0.412 ms/op, n=30, r=3)
+decrypt 1MB                            best=0.0124s (0.413 ms/op, n=30, r=3)
+encrypt 16MB                           best=0.0175s (5.826 ms/op, n=3, r=2)
+decrypt 16MB                           best=0.0183s (6.102 ms/op, n=3, r=2)
+```
+
+
+## Troubleshooting `oqs` on Windows
+If you see errors like `module oqs has no attribute KeyEncapsulation`, your installed `oqs` package is not the expected Open Quantum Safe binding.
+
+- Uninstall conflicting package(s):
+```bash
+pip uninstall oqs
+```
+- Install the correct Open Quantum Safe Python binding + native liboqs per your platform docs.
+
+The examples now catch `DependencyError` and print a friendly hint instead of a raw traceback.

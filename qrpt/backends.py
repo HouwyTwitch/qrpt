@@ -11,7 +11,17 @@ else:
 
 def require_oqs():
     if oqs is None:
-        raise DependencyError("Missing `oqs` dependency.") from _oqs_error
+        raise DependencyError("Missing `oqs` dependency. Install the Open Quantum Safe Python bindings.") from _oqs_error
+
+    missing = []
+    for attr in ("KeyEncapsulation", "Signature"):
+        if not hasattr(oqs, attr):
+            missing.append(attr)
+    if missing:
+        raise DependencyError(
+            "Installed `oqs` module is incompatible (missing: " + ", ".join(missing) + "). "
+            "You may have a different `oqs` package on your system; install Open Quantum Safe bindings."
+        )
     return oqs
 
 
