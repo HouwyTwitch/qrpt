@@ -10,7 +10,7 @@ Post-quantum cryptography toolkit with a safer, modular architecture.
 
 ## Quick benchmark
 ```bash
-PYTHONPATH=. python benchmarks/timeit_suite.py
+python benchmarks/timeit_suite.py
 ```
 
 ## Direct timeit commands

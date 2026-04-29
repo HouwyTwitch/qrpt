@@ -1,6 +1,14 @@
 """Run local micro-benchmarks for qrpt hot paths that do not require oqs."""
 
+from __future__ import annotations
+
+import sys
+from pathlib import Path
 from timeit import repeat
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def bench(stmt: str, setup: str, label: str) -> None:
